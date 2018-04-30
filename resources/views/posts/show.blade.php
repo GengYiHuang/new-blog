@@ -5,10 +5,13 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Post</div>
+                <div class="card-header">{{ $post->title }}</div>
 
                 <div class="card-body">
-                    Show
+                    {{ $post->body }}  
+                    @foreach(json_decode($post->image_path) as $image)
+                        <img src="{{ $image }}">
+                    @endforeach
                 </div>
             </div>
         </div>

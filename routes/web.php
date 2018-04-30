@@ -19,3 +19,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/post', 'PostController')->middleware('auth');
+Route::get('/image', function () {
+    return view('image.index');
+});

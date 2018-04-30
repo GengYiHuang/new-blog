@@ -15,10 +15,12 @@
     </div>
     <br><br>
 
-    <form action="{{ route('post.store')}}" method="POST">
+    <form action="{{ route('post.store')}}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="row justify-content-center">
             <div class="col-8">
+                <input type="file" name="images[]" placeholder="123" id="" multiple required><br>
+
                 <p>Title :</p> 
                 <input type="" name="title" size="100"><br>
     

@@ -15,7 +15,6 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::orderBy('id', 'desc')->get();
-        // dd($post);
         return view('posts.index')->with('posts', $posts);
     }
 
@@ -36,12 +35,26 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
         $post = Post::create([
-            'title' => $request->title,
-            'body' => $request->body,
+            'title' => $request->title ?: '',
+            'body' => $request->body ?: '',
+            'image_path' => '',
         ]);
 
+        $id = $post->id;
+        
+        if ($files = $request->file('images')) {
+            foreach ($files as $key => $file) {
+                $type = explode('/', $file->getClientMimeType())[1];   //mimetype ex:image/png, video/mp4
+                $name = '/image/'.$id.'-'.($key + 1).'.'.$type;
+                $file->move('image', $name);
+                $images[] = $name;
+            }
+            Post::find($id)->update([
+                'image_path' => json_encode($images),
+            ]);
+        }
         return redirect()->route('post.index');
     }
 
@@ -53,7 +66,8 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        $post = Post::find($id);
+        return view('posts.show', ['post' => $post]);
     }
 
     /**

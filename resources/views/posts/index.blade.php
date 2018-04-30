@@ -12,10 +12,7 @@
         <div class="col-md-8">
             <div class="card">
                 @foreach ($posts as $post)
-                    <div class="card-header">{{ $post->title }}</div>
-                    <div class="card-body">
-                        {{ $post->body }}
-                    </div>
+                    <div class="card-header"><a href="/post/{{ $post->id }}">{{ $post->title }}</a></div>
                 @endforeach
                 
             </div>
