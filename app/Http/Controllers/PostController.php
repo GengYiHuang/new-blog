@@ -78,7 +78,8 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::find($id);
+        return view('posts.edit', ['post' => $post]);
     }
 
     /**
@@ -90,7 +91,32 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $post = Post::find($id);
+        $imgs = $post->image_path;
+        if($imgs) {
+            foreach(json_decode($imgs) as $img) {
+                unlink('.'.$img);
+            }
+        }
+
+        Post::find($id)->update([
+            'title' => $request->title ?: '',
+            'body' => $request->body ?: '',
+            'image_path' => '',
+        ]);
+
+        if ($files = $request->file('images')) {
+            foreach($files as $key => $file) {
+                $type = explode('/', $file->getClientMimeType())[1];   //mimetype ex:image/png, video/mp4
+                $name = '/image/'.$id.'-'.($key + 1).'.'.$type;
+                $file->move('image', $name);
+                $images[] = $name;
+            }
+            Post::find($id)->update([
+                'image_path' => json_encode($images),
+            ]);
+        }
+        return redirect()->route('post.show', $id);
     }
 
     /**

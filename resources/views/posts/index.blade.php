@@ -12,7 +12,7 @@
         <div class="col-md-8">
             <div class="card">
                 @foreach ($posts as $post)
-                    <div class="card-header"><a href="/post/{{ $post->id }}">{{ $post->title }}</a></div>
+                    <div class="card-header"><a href="/post/{{ $post->id }}">{{ $post->title }}</a><a href="/post/{{ $post->id }}/edit"><button style="float: right">edit</button></a></div>
                 @endforeach
                 
             </div>

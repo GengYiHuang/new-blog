@@ -8,10 +8,12 @@
                 <div class="card-header">{{ $post->title }}</div>
 
                 <div class="card-body">
-                    {{ $post->body }}  
-                    @foreach(json_decode($post->image_path) as $image)
-                        <img src="{{ $image }}">
-                    @endforeach
+                    {{ $post->body }}
+                    @if($post->image_path)  
+                        @foreach(json_decode($post->image_path) as $image)
+                            <img src="{{ $image }}">
+                        @endforeach
+                    @endif
                 </div>
             </div>
         </div>
