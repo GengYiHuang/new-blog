@@ -14,6 +14,11 @@
                             <img src="{{ $image }}">
                         @endforeach
                     @endif
+                    <form action="{{ route('post.destroy', $post->id)}}" method="POST">
+                        {{ csrf_field() }}
+                        @method('delete')
+                        <button type="submit">刪除</button>
+                    </form>
                 </div>
             </div>
         </div>

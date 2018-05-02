@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use Auth;
 
 class PostController extends Controller
 {
@@ -37,6 +38,7 @@ class PostController extends Controller
     public function store(Request $request)
     {   
         $post = Post::create([
+            'uid' => Auth::id(),
             'title' => $request->title ?: '',
             'body' => $request->body ?: '',
             'image_path' => '',
@@ -127,6 +129,7 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Post::find($id)->delete();
+        return redirect()->route('post.index');
     }
 }
