@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Post;
+use App\Entities\Post;
 use Auth;
 
 class PostController extends Controller
@@ -15,7 +15,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::orderBy('id', 'desc')->get();
+        $posts = Post::orderBy('id', 'desc')->with('user')->get();
         return view('posts.index')->with('posts', $posts);
     }
 
@@ -95,19 +95,14 @@ class PostController extends Controller
     {
         $post = Post::find($id);
         $imgs = $post->image_path;
-        if($imgs) {
-            foreach(json_decode($imgs) as $img) {
-                unlink('.'.$img);
-            }
-        }
-
-        Post::find($id)->update([
-            'title' => $request->title ?: '',
-            'body' => $request->body ?: '',
-            'image_path' => '',
-        ]);
+        $files = $request->file('images');
 
         if ($files = $request->file('images')) {
+            if($imgs) {
+                foreach(json_decode($imgs) as $img) {
+                    unlink('.'.$img);
+                }
+            }
             foreach($files as $key => $file) {
                 $type = explode('/', $file->getClientMimeType())[1];   //mimetype ex:image/png, video/mp4
                 $name = '/image/'.$id.'-'.($key + 1).'.'.$type;
@@ -118,6 +113,12 @@ class PostController extends Controller
                 'image_path' => json_encode($images),
             ]);
         }
+
+        Post::find($id)->update([
+            'title' => $request->title ?: '',
+            'body' => $request->body ?: '',
+        ]);
+
         return redirect()->route('post.show', $id);
     }
 
