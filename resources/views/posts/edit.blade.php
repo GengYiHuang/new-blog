@@ -1,26 +1,34 @@
-@extends('layouts.app')
+@extends('layouts.blog')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Post</div>
-
-                <div class="card-body">
-                    Edit
+@section('nav-item')
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('post.index') }}">文章列表</a>
+    </li>
+@endsection
+@section('header')
+    <header class="masthead" style="background-image: url('/img/post-sample-image.jpg')">
+        <div class="overlay"></div>
+            <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    <div class="post-heading">
+                        <h1>編輯文章</h1>
+                        <h2 class="subheading">-如果你一天省下買一杯奶茶的錢，十天後你可以買十杯</h2>                  
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <br><br>
-
+    </header>
+@endsection
+<div id="post-edit" class="container-fluid">
     <form action="{{ route('post.update', $post->id)}}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('put') 
         {{-- 表單只能帶POST跟GET所以要加上面這個 --}}
         <div class="row justify-content-center">
-            <div class="col-8">
+            <div class="col-10 col-md-10 col-lg-8 col-xl-7">
+                <span>上傳照片 ：</span><small>(上傳新的照片舊的會被移除)</small><br>
                 <input type="file" name="images[]" accept="image/*" multiple><br>
                 @if($post->image_path)
                     @foreach(json_decode($post->image_path) as $image)
@@ -33,13 +41,13 @@
                 <input type="" name="title" size="100" value={{ $post->title }}><br>
     
                 <p>Body :</p>
-            <textarea name="body" id="" cols="100" rows="10">{{ $post->body }}</textarea> 
+            <textarea name="body" id="" cols="100" rows="10" wrap="hard">{{ $post->body }}</textarea> 
             </div>
             <br>
         </div><br>
 
         <div class="row  justify-content-center">
-            <div class="col-8">
+            <div class="col-10 col-md-10 col-lg-8 col-xl-7">
                 <button id="submit" class="btn btn-primary">Submit</button>
             </div>
         </div>

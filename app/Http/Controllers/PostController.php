@@ -69,6 +69,7 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::find($id);
+        // dd($post);
         return view('posts.show', ['post' => $post]);
     }
 
@@ -130,6 +131,13 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
+        $post = Post::find($id);
+        $imgs = $post->image_path;
+        if($imgs) {
+            foreach(json_decode($imgs) as $img) {
+                unlink('.'.$img);
+            }
+        }
         Post::find($id)->delete();
         return redirect()->route('post.index');
     }

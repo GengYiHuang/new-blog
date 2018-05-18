@@ -1,11 +1,24 @@
+*{
+    font-family: 'Noto Sans TC', sans-serif !important;
+}
 #post-index .post-meta{
     float: right;
 }
 #post-index hr{
     margin: 60px 0;
 }
+#post-index .content-preview{
+    font-size: 22px;
+}
+#post-index .click-to-read{
+    float: right;
+    font-weight:bold;
+}
 #post-show a:hover{
     text-decoration:none;
+}
+#post-show pre{
+    font-size: 24px;
 }
 #post-show img{
     max-width: 100%;
@@ -15,4 +28,19 @@
 }
 #post-show .button-block{
     float: right;
+}
+#post-show .heading{
+    padding: 139px 0 !important;
+}
+#post-create input{
+    width: 100%;
+}
+#post-create textarea{
+    width: 100%;
+}
+#post-edit input{
+    width: 100%;
+}
+#post-edit textarea{
+    width: 100%;
 }
