@@ -1,11 +1,6 @@
 @extends('layouts.blog')
 
 @section('content')
-@section('nav-item')
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('post.index') }}">文章列表</a>
-    </li>
-@endsection
 @section('header')
     <header class="masthead" style="background-image: url('/img/post-sample-image.jpg')">
         <div class="overlay"></div>

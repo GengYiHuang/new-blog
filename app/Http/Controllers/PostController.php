@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Entities\User;
 use App\Entities\Post;
+use App\Entities\Comment;
 use Auth;
 
 class PostController extends Controller
@@ -42,6 +44,7 @@ class PostController extends Controller
             'title' => $request->title ?: '',
             'body' => $request->body ?: '',
             'image_path' => '',
+            'views' => 0,
         ]);
 
         $id = $post->id;
@@ -68,9 +71,18 @@ class PostController extends Controller
      */
     public function show($id)
     {
+        // $post = Post::with('user')->where('id', $id)->get();
         $post = Post::find($id);
         // dd($post);
-        return view('posts.show', ['post' => $post]);
+        $comments = Comment::with('user')->where('pid', $id)->get();
+        // dd($comments);
+        if(Auth::user()->id != $post->uid){
+            $views = $post->views + 1;
+            $post->update([
+                'views' => $views,
+            ]);
+        }
+        return view('posts.show', ['post' => $post, 'comments' => $comments]);
     }
 
     /**
@@ -140,5 +152,23 @@ class PostController extends Controller
         }
         Post::find($id)->delete();
         return redirect()->route('post.index');
+    }
+    public function createComment(Request $request, $id)
+    {
+        Comment::create([
+            'uid' => Auth::user()->id,
+            'pid' => $id,
+            'content' => $request->comment,
+            'response' => ''
+        ]);
+        return redirect()->route('post.show', $id);
+    }
+    public function responseComment(Request $request, $id)
+    {
+        $comment = Comment::find($id);
+        $comment->update([
+            'response' => $request->response
+        ]);
+        return redirect()->route('post.show', $comment->pid);
     }
 }

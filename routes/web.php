@@ -18,7 +18,14 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::resource('/post', 'PostController')->middleware('auth');
+Route::group(['middleware' => 'auth'], function() {
+    Route::resource('/post', 'PostController');
+    Route::get('/user/{id}', 'UserController@index')->name('user.index');
+    Route::get('/user/{id}/edit', 'UserController@edit')->name('user.edit');
+    Route::put('/user/{id}', 'UserController@update')->name('user.update');
+    Route::post('/comment/{id}', 'PostController@createComment')->name('comment.create');
+    Route::put('/comment/{id}', 'PostController@responseComment')->name('comment.response');
+});
 Route::get('/image', function () {
     return view('image.index');
 });

@@ -39,7 +39,31 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-          @yield('nav-item')
+          <li class="nav-item">
+              <a class="nav-link" href="{{ route('post.index') }}">文章列表</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="{{ route('post.create') }}">撰寫文章</a>
+          </li>
+          <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                  <img class="nav-avatar" src="{{ Auth::user()->avatar ?: "/img/avatar-default.png" }}">
+              </a>
+              <div class="dropdown-menu">
+                  <a class="dropdown-item" href="/user/{{ Auth::user()->id }}">個人頁面</a>
+                  <a class="dropdown-item" href="#">站內信箱</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="{{ route('logout') }}"
+                      onclick="event.preventDefault();
+                      document.getElementById('logout-form').submit();">
+                      登出
+                  </a>
+      
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                      @csrf
+                  </form>
+              </div>
+          </li>
         </ul>
       </div>
     </div>
@@ -75,6 +99,7 @@
   
   {{-- import js here --}}
   @yield('js')
+  <script src="/js/my-blog.js"></script> 
 </body>
 
 </html>

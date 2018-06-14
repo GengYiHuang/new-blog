@@ -1,6 +1,11 @@
 *{
     font-family: 'Noto Sans TC', sans-serif !important;
 }
+.nav-avatar{
+    width: 25px;
+    height: 25px;
+}
+
 #post-index .post-meta{
     float: right;
 }
@@ -14,8 +19,20 @@
     float: right;
     font-weight:bold;
 }
+#post-index .views{
+    float: left;
+    color: #868e96;
+}
+
 #post-show a:hover{
     text-decoration:none;
+}
+#post-show .poster-name{
+    vertical-align: bottom;
+}
+#post-show .poster-avatar{
+    width: 50px;
+    height: 50px;
 }
 #post-show pre{
     font-size: 24px;
@@ -32,15 +49,128 @@
 #post-show .heading{
     padding: 139px 0 !important;
 }
+#post-show .comment-avatar{
+    width: 150px;
+    height: 150px;
+    margin-top: 14px;
+}
+#post-show .comment-name{
+    color: #686868;
+    text-align: center;
+}
+#post-show .comment-button-block{
+    text-align: right;
+}
+#post-show .comment-block{
+    margin-top: 20px;
+}
+#post-show .comment-header{
+    background-color: rgba(0,0,0,0);
+}
+#post-show .comment-body{
+    background-color: rgba(0,0,0,.03);
+    padding: 7px 70px;
+}
+#post-show .single-comment{
+    margin-top: 20px;
+    padding-left: 0;
+    padding-right: 0;
+}
+#post-show .comment-text-block{
+    margin-top: 15px;
+}
+#post-show .comment-poster-avatar{
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;
+}
+#post-show .response-text{
+    vertical-align: bottom;
+}
+#post-show .response{
+    vertical-align: bottom;
+    width: 80%;
+}
+
 #post-create input{
     width: 100%;
 }
 #post-create textarea{
     width: 100%;
 }
+
 #post-edit input{
     width: 100%;
 }
 #post-edit textarea{
     width: 100%;
+}
+
+#user-index .post-meta{
+    float: right;
+}
+#user-index hr{
+    margin: 60px 0;
+}
+#user-index .content-preview{
+    font-size: 22px;
+}
+#user-index .click-to-read{
+    float: right;
+    font-weight:bold;
+}
+#user-index .user-info{
+    margin: auto;
+    width: 100%;
+}
+#user-index .avatar{
+    height: 200px;
+    width: 200px;
+    margin: auto;
+    display: block;
+    border-radius:50%;    
+}
+#user-index .text-right{
+    float: right;
+}
+#user-index .selfintro{
+    text-align: center;
+    font-size: 20px;
+    margin-top: 20px;
+}
+#user-index .edit-button{
+    float: right;
+}
+#user-index .title{
+    font-size: 45px;
+}
+#user-index .views{
+    float: left;
+    color: #868e96;
+}
+
+#user-edit .avatar{
+    height: 200px;
+    width: 200px;
+    margin: auto;
+    display: block;
+    border-radius:50%; 
+}
+#user-edit .selfintro{
+    display: block;
+    margin-top: 10px;
+    width: 100%;
+}
+#user-edit select{
+    width: 273px;
+}
+#user-edit input[type="date"]{
+    width: 273px;
+}
+#user-edit input[type="submit"]{
+    float: right;
+    margin: 10px 0;
+}
+#user-edit .no-display{
+    display: none;
 }
