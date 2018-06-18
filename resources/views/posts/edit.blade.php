@@ -9,7 +9,7 @@
                 <div class="col-lg-8 col-md-10 mx-auto">
                     <div class="post-heading">
                         <h1>編輯文章</h1>
-                        <h2 class="subheading">-如果你一天省下買一杯奶茶的錢，十天後你可以買十杯</h2>                  
+                        <h2 class="subheading">-看到邱主任不喜歡的話，就不是男人</h2>                  
                     </div>
                 </div>
             </div>

@@ -74,7 +74,7 @@ class PostController extends Controller
         // $post = Post::with('user')->where('id', $id)->get();
         $post = Post::find($id);
         // dd($post);
-        $comments = Comment::with('user')->where('pid', $id)->get();
+        $comments = Comment::with('user')->where('pid', $id)->orderBy('id')->get();
         // dd($comments);
         if(Auth::user()->id != $post->uid){
             $views = $post->views + 1;

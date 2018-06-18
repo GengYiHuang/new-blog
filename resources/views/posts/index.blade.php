@@ -25,7 +25,7 @@
                         <h2 class="post-title">{{ $post->title }}</h2>
                         <pre class="post-subtitle content-preview">{{ $post->body }}</pre>
                     </a>
-                    <span class="views">點閱數:{{ $post->views }}</span><p class="post-meta">Posted by&nbsp;<a href="/user/{{ $post->uid }}">{{ $post->user->name }}</a>&nbsp;on &nbsp;<span class="createtime">{{ $post->created_at }}</span></p>
+                    <span class="views">點閱數:{{ $post->views }}</span><p class="post-meta">Posted by&nbsp;<a href="/user/{{ $post->uid }}">{{ $post->user->nickname ?: $post->user->name }}</a>&nbsp;on &nbsp;<span class="createtime">{{ $post->created_at }}</span></p>
                 </div>
                 <hr>
             @endforeach

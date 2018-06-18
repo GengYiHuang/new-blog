@@ -117,12 +117,8 @@
                         </div>
                     @endif
                 </div>
-                {{-- {{ $comment->content }}
-                {{ $comment->user->nickname ?: $comment->user->name }} --}}
             @endforeach
         </div>
-        
     </div>
-    
 </div>
 @endsection
