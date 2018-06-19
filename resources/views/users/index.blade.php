@@ -38,7 +38,9 @@
                 </ul>
             </div>
             @if(Auth::user()->id == $user->id)
-                <div class="edit-button"><a href="/user/{{ $user->id }}/edit"><button class="btn-sm btn-outline-warning">編輯資料</button></a></div>
+                <div class="edit-button"><a href="/user/{{ Auth::user()->id }}/edit"><button class="btn-sm btn-outline-warning">編輯資料</button></a></div>
+            @else
+                <div class="edit-button"><a href="/message/create/{{ $user->id }}"><button class="btn-sm btn-outline-warning">寫信給他</button></a></div>
             @endif
             <br><br>
             <div>

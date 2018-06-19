@@ -33,10 +33,10 @@
                 <br>
                 <br>
                 <p>Title :</p> 
-                <input type="" name="title" size="100" value={{ $post->title }}><br>
+                <input type="" name="title" size="100" value={{ $post->title }} required><br>
     
                 <p>Body :</p>
-            <textarea name="body" id="" cols="100" rows="10" wrap="hard">{{ $post->body }}</textarea> 
+                <textarea name="body" id="" cols="100" rows="10" wrap="hard" required>{{ $post->body }}</textarea> 
             </div>
             <br>
         </div><br>

@@ -51,7 +51,15 @@
               </a>
               <div class="dropdown-menu">
                   <a class="dropdown-item" href="/user/{{ Auth::user()->id }}">個人頁面</a>
-                  <a class="dropdown-item" href="#">站內信箱</a>
+                  <a class="dropdown-item" href="/message/{{ Auth::user()->id }}">站內信箱
+                    @php
+                      use App\Entities\Message;
+                      $count = Message::where('read', 0)->where('send_to', Auth::user()->id)->count();
+                      echo "<span class='notification-icon".($count ? '' : ' display-none')."'>";
+                      echo $count;
+                      echo "</span>";
+                    @endphp 
+                    </a>
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="{{ route('logout') }}"
                       onclick="event.preventDefault();

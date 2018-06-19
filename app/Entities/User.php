@@ -35,4 +35,8 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Entities\Comment', 'id', 'uid');
     }
+    public function messages()
+    {
+        return $this->hasMany('App\Entities\Message', 'id', 'uid');
+    }
 }
