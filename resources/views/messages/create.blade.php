@@ -9,7 +9,7 @@
                 <div class="col-lg-8 col-md-10 mx-auto">
                     <div class="post-heading">
                         <h1>撰寫信件</h1>
-                        <h2 class="subheading">-看到邱主任不喜歡的話，就不是男人</h2>
+                        <h2 class="subheading">-如果我說的不是事實，這顆曲棍球我就當場給他吞下去</h2>
                     </div>
                 </div>
             </div>

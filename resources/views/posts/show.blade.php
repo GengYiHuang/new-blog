@@ -89,7 +89,9 @@
                         </div>
                         <div class="row">
                             <div class="col-3">
-                                <img src="{{ $comment->user->avatar ?: "/img/avatar-default.png" }}" class="comment-avatar">
+                                <a href="/user/{{ $comment->user->id }}">
+                                    <img src="{{ $comment->user->avatar ?: "/img/avatar-default.png" }}" class="comment-avatar">
+                                </a>
                                 <div class="comment-name">
                                     {{ $comment->user->nickname ?: $comment->user->name }}
                                 </div>
@@ -118,6 +120,7 @@
                     @endif
                 </div>
             @endforeach
+            {{ $comments->links() }}
         </div>
     </div>
 </div>

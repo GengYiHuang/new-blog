@@ -27,11 +27,11 @@
 </head>
 
 <body>
-
+  
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
-      <a class="navbar-brand" href="{{ url('/post') }}">My Blog</a>
+      <a class="navbar-brand" href="{{ url('/') }}">My Blog</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive"
         aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         Menu
@@ -39,39 +39,44 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-              <a class="nav-link" href="{{ route('post.index') }}">文章列表</a>
-          </li>
-          <li class="nav-item">
-              <a class="nav-link" href="{{ route('post.create') }}">撰寫文章</a>
-          </li>
-          <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                  <img class="nav-avatar" src="{{ Auth::user()->avatar ?: "/img/avatar-default.png" }}">
-              </a>
-              <div class="dropdown-menu">
-                  <a class="dropdown-item" href="/user/{{ Auth::user()->id }}">個人頁面</a>
-                  <a class="dropdown-item" href="/message/{{ Auth::user()->id }}">站內信箱
-                    @php
-                      use App\Entities\Message;
-                      $count = Message::where('read', 0)->where('send_to', Auth::user()->id)->count();
-                      echo "<span class='notification-icon".($count ? '' : ' display-none')."'>";
-                      echo $count;
-                      echo "</span>";
-                    @endphp 
+          @if(Auth::check())
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('post.index') }}">文章列表</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('post.create') }}">撰寫文章</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                    <img class="nav-avatar" src="{{ Auth::user()->avatar ?: "/img/avatar-default.png" }}">
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="/user/{{ Auth::user()->id }}">個人頁面</a>
+                    <a class="dropdown-item" href="/message/{{ Auth::user()->id }}">站內信箱
+                      @php
+                        $count = App\Entities\Message::where('read', 0)->where('send_to', Auth::id())->count();
+                      @endphp
+                      <span class='notification-icon {{ $count ? '' : 'display-none' }}'>
+                          {{ $count }}
+                      </span>
                     </a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="{{ route('logout') }}"
-                      onclick="event.preventDefault();
-                      document.getElementById('logout-form').submit();">
-                      登出
-                  </a>
-      
-                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                      @csrf
-                  </form>
-              </div>
-          </li>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">
+                        登出
+                    </a>
+        
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                </div>
+            </li>
+          @else
+            <li class="nav-item">
+              <a class="nav-link" href="/login">登入</a>
+            </li>
+          @endif
         </ul>
       </div>
     </div>

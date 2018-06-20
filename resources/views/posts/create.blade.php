@@ -23,7 +23,7 @@
         <div class="row justify-content-center">
             <div class="col-10 col-md-10 col-lg-8 col-xl-7">
                 <p>上傳圖片 :</p> 
-                <input type="file" name="images[]" placeholder="123" id="" multiple required><br>
+                <input type="file" name="images[]" placeholder="123" id="" multiple><br>
 
                 <p>Title :</p> 
                 <input type="" name="title" size="105"><br>

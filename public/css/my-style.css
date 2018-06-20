@@ -53,6 +53,8 @@
 }
 #post-show pre{
     font-size: 24px;
+    word-wrap: break-word;
+    white-space: pre-wrap;
 }
 #post-show img{
     max-width: 100%;

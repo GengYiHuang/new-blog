@@ -54,6 +54,7 @@
                 </div>
                 <hr>
                 @endforeach
+                {{ $posts->links() }}
             </div>
             
         </div>

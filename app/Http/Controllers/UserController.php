@@ -13,7 +13,7 @@ class UserController extends Controller
     public function index($id)
     {
         $user = User::find($id);
-        $posts = Post::where('uid', $id)->get();
+        $posts = Post::orderBy('id', 'desc')->where('uid', $id)->paginate(5);
         return view('users.index', ['user' => $user, 'posts' => $posts]);
     }
     public function edit($id)
@@ -23,7 +23,6 @@ class UserController extends Controller
     }
     public function update(Request $request, $id)
     {
-        // dd($request);
         $avatar = $request->file('avatar');
         if($avatar) {
             $type = explode('/', $avatar->getClientMimeType())[1];

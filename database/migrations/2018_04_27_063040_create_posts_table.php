@@ -17,9 +17,9 @@ class CreatePostsTable extends Migration
             $table->increments('id');
             $table->string('uid');
             $table->string('title');
-            $table->string('body', 255);
+            $table->string('body', 1024);
             $table->string('image_path');
-            $table->string('views');
+            $table->integer('views');
             $table->timestamps();
         });
     }

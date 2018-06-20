@@ -15,9 +15,14 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function home()
+    {
+        $posts = Post::orderBy('views', 'desc')->with('user')->take(5)->get();
+        return view('posts.home')->with('posts', $posts);
+    }
     public function index()
     {
-        $posts = Post::orderBy('id', 'desc')->with('user')->get();
+        $posts = Post::orderBy('id', 'desc')->with('user')->paginate(10);
         return view('posts.index')->with('posts', $posts);
     }
 
@@ -71,11 +76,8 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        // $post = Post::with('user')->where('id', $id)->get();
         $post = Post::find($id);
-        // dd($post);
-        $comments = Comment::with('user')->where('pid', $id)->orderBy('id')->get();
-        // dd($comments);
+        $comments = Comment::with('user')->where('pid', $id)->orderBy('id')->paginate(10);
         if(Auth::user()->id != $post->uid){
             $views = $post->views + 1;
             $post->update([
