@@ -24,7 +24,11 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $avatar = $request->file('avatar');
+        $avatarBefore = User::find($id)->avatar;
         if($avatar) {
+            if($avatarBefore){
+                unlink('.'.$avatarBefore);
+            }
             $type = explode('/', $avatar->getClientMimeType())[1];
             $name = '/avatar/'.$id.'.'.$type;
             $avatar->move('avatar', $name);

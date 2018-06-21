@@ -76,6 +76,9 @@
             <li class="nav-item">
               <a class="nav-link" href="/login">登入</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/register">註冊</a>
+            </li>
           @endif
         </ul>
       </div>

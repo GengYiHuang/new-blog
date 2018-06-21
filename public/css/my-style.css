@@ -31,6 +31,8 @@
 }
 #post-index .content-preview{
     font-size: 22px;
+    word-wrap: break-word;
+    white-space: pre-wrap;
 }
 #post-index .click-to-read{
     float: right;
@@ -208,6 +210,14 @@
     font-weight: bold;
 }
 
+#message-create textarea{
+    width: 100%;
+}
+
 #message-show button{
     float: right;
+}
+#message-show pre{
+    word-wrap: break-word;
+    white-space: pre-wrap;
 }

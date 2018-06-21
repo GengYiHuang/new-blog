@@ -16,7 +16,7 @@
         </div>
     </header>
 @endsection
-<div id="message-show" class="container">
+<div id="message-create" class="container">
     <div class="row justify-content-center">
         <div class="col-lg-8 col-md-10 mx-auto">
             <form action="{{ route('message.store', $send_to)}}" method="POST" enctype="multipart/form-data">
