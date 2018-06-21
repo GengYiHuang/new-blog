@@ -135,6 +135,8 @@
 }
 #user-index .content-preview{
     font-size: 22px;
+    word-wrap: break-word;
+    white-space: pre-wrap;
 }
 #user-index .click-to-read{
     float: right;
