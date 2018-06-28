@@ -60,6 +60,7 @@
 }
 #post-show img{
     max-width: 100%;
+    margin-bottom: 20px;
 }
 #post-show .inline{
     display: inline;
